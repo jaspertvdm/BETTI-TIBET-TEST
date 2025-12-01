@@ -1,0 +1,94 @@
+{
+  "model": "llama3.1:8b",
+  "timestamp": "2025-12-01 20:51:13",
+  "tests": {
+    "single_simple": {
+      "direct_ms": 3768.150446994696,
+      "betti_ms": 1866.5875830047298,
+      "betti_priority": 1
+    },
+    "single_medium": {
+      "direct_ms": 25583.05100799771,
+      "betti_ms": 25089.576369995484,
+      "betti_priority": 1
+    },
+    "single_complex": {
+      "direct_ms": 73525.54028699524,
+      "betti_ms": 27205.609652999556,
+      "betti_priority": null
+    },
+    "concurrent_2": {
+      "direct": {
+        "name": "Direct",
+        "concurrent": 2,
+        "successful": 2,
+        "failed": 0,
+        "duration_sec": 4.470775714988122,
+        "avg_latency_ms": 3692.5663055008044,
+        "p95_latency_ms": 4469.832453003619,
+        "throughput_rps": 0.44734966088660383
+      },
+      "betti": {
+        "name": "BETTI",
+        "concurrent": 2,
+        "successful": 2,
+        "failed": 0,
+        "duration_sec": 3.1177570979925804,
+        "avg_latency_ms": 2337.9109115048777,
+        "p95_latency_ms": 3117.352036992088,
+        "throughput_rps": 0.6414867923122469
+      }
+    },
+    "concurrent_3": {
+      "direct": {
+        "name": "Direct",
+        "concurrent": 3,
+        "successful": 3,
+        "failed": 0,
+        "duration_sec": 5.833875772019383,
+        "avg_latency_ms": 3912.3693806662536,
+        "p95_latency_ms": 5833.4748490015045,
+        "throughput_rps": 0.5142378955665621
+      },
+      "betti": {
+        "name": "BETTI",
+        "concurrent": 3,
+        "successful": 3,
+        "failed": 0,
+        "duration_sec": 6.269755567016546,
+        "avg_latency_ms": 3943.8242686737794,
+        "p95_latency_ms": 6269.39720500377,
+        "throughput_rps": 0.4784875531324016
+      }
+    },
+    "concurrent_5": {
+      "direct": {
+        "name": "Direct",
+        "concurrent": 5,
+        "successful": 5,
+        "failed": 0,
+        "duration_sec": 8.969591581990244,
+        "avg_latency_ms": 5550.69295320427,
+        "p95_latency_ms": 8969.146231014747,
+        "throughput_rps": 0.5574389819531292
+      },
+      "betti": {
+        "name": "BETTI",
+        "concurrent": 5,
+        "successful": 5,
+        "failed": 0,
+        "duration_sec": 8.52719515399076,
+        "avg_latency_ms": 4889.481154200621,
+        "p95_latency_ms": 8526.706431002822,
+        "throughput_rps": 0.5863592787201523
+      }
+    },
+    "priority": {
+      "emergency_latency_ms": 15802.857552014757,
+      "emergency_priority": 0,
+      "background_avg_latency_ms": 43895.7101739943,
+      "background_priority": 0,
+      "emergency_first": true
+    }
+  }
+}
