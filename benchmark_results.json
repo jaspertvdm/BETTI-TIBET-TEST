@@ -1,0 +1,95 @@
+{
+  "throughput": {
+    "without": {
+      "name": "WITHOUT 14 Wetten (baseline)",
+      "total_requests": 1000,
+      "successful": 1000,
+      "failed": 0,
+      "duration_sec": 4.57,
+      "requests_per_sec": 219.0,
+      "avg_latency_ms": 45.32,
+      "p50_latency_ms": 44.77,
+      "p95_latency_ms": 56.53,
+      "p99_latency_ms": 68.27,
+      "errors": {
+        "timeout": 0
+      },
+      "extra": {}
+    },
+    "with": {
+      "name": "WITH 14 Wetten (full pipeline)",
+      "total_requests": 1000,
+      "successful": 1000,
+      "failed": 0,
+      "duration_sec": 0.99,
+      "requests_per_sec": 1014.7,
+      "avg_latency_ms": 9.77,
+      "p50_latency_ms": 8.67,
+      "p95_latency_ms": 16.19,
+      "p99_latency_ms": 17.61,
+      "errors": {
+        "timeout": 0
+      },
+      "extra": {}
+    },
+    "overhead_percent": -363.3
+  },
+  "stress": {
+    "without": {
+      "requests": 349,
+      "errors": 0,
+      "rps": 34.9
+    },
+    "with": {
+      "requests": 3905,
+      "errors": 0,
+      "rps": 390.5
+    },
+    "overhead_percent": -1018.9
+  },
+  "chaos": {
+    "Emergency Call": {
+      "latency_ms": 6.98,
+      "queue_priority": 1,
+      "memory_mb": 256,
+      "timeout_ms": 15000.0,
+      "split_required": false
+    },
+    "Video Conference": {
+      "latency_ms": 1.93,
+      "queue_priority": 10,
+      "memory_mb": 512,
+      "timeout_ms": 15000.0,
+      "split_required": false
+    },
+    "Background Sync": {
+      "latency_ms": 2.07,
+      "queue_priority": 10,
+      "memory_mb": 64,
+      "timeout_ms": 51818.0,
+      "split_required": false
+    },
+    "Chat Message": {
+      "latency_ms": 2.14,
+      "queue_priority": 1,
+      "memory_mb": 32,
+      "timeout_ms": 26250.0,
+      "split_required": false
+    },
+    "File Upload": {
+      "latency_ms": 1.95,
+      "queue_priority": 10,
+      "memory_mb": 256,
+      "timeout_ms": 34286.0,
+      "split_required": false
+    },
+    "IoT Sensor": {
+      "latency_ms": 1.99,
+      "queue_priority": 1,
+      "memory_mb": 32,
+      "timeout_ms": 26250.0,
+      "split_required": false
+    }
+  },
+  "timestamp": "2025-12-01 20:01:34"
+}
