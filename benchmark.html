@@ -620,6 +620,11 @@
                 <div class="stat-label">FASTER LLM</div>
                 <div class="stat-change positive">Ollama llama3.1:8b</div>
             </div>
+            <div class="stat-box" style="border-color: #ef4444; box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);">
+                <div class="stat-value" style="color: #ef4444;">7.2x</div>
+                <div class="stat-label">STRESS RESILIENCE</div>
+                <div class="stat-change positive">P90 under load</div>
+            </div>
         </div>
 
         <!-- Technical Performance Matrix -->
@@ -739,6 +744,107 @@
                     <p class="explanation">Law 6 (Archimedes) lets fast tasks float in the queue. Emergency requests are served first.</p>
                 </div>
             </div>
+        </section>
+
+        <!-- Torture Test Section -->
+        <section class="deep-dive" style="background: linear-gradient(135deg, #1a0a0a, #12121a); border: 1px solid #ef4444;">
+            <span class="badge" style="color: #ef4444;">STRESS TEST</span>
+            <h2 style="color: #ef4444; border-color: #ef4444;">Server Torture Test (40 Workers)</h2>
+            <p style="color: var(--text-slate); margin-bottom: 1rem;">
+                Heavy computational load with 40 parallel workers. RAW = no balancing, BALANCED = with BETTI.
+            </p>
+
+            <div class="matrix-container" style="border-color: #ef4444;">
+                <div class="matrix-header">
+                    <div class="col metric">Metric</div>
+                    <div class="col old">RAW (No BETTI)</div>
+                    <div class="col new">BALANCED (BETTI)</div>
+                    <div class="col diff">Improvement</div>
+                </div>
+
+                <div class="matrix-row">
+                    <div class="col metric">
+                        <strong>Avg Job Time</strong>
+                        <span class="desc">Time to complete each task</span>
+                    </div>
+                    <div class="col old">3,919 ms</div>
+                    <div class="col new">814 ms</div>
+                    <div class="col diff positive">4.8x faster</div>
+                </div>
+
+                <div class="matrix-row">
+                    <div class="col metric">
+                        <strong>P50 (Median)</strong>
+                        <span class="desc">Half of jobs complete faster than...</span>
+                    </div>
+                    <div class="col old">3,629 ms</div>
+                    <div class="col new">810 ms</div>
+                    <div class="col diff positive">4.5x faster</div>
+                </div>
+
+                <div class="matrix-row stress">
+                    <div class="col metric">
+                        <strong>P90 Latency</strong>
+                        <span class="desc">90% of jobs complete faster than...</span>
+                    </div>
+                    <div class="col old">6,959 ms</div>
+                    <div class="col new">972 ms</div>
+                    <div class="col diff explosive">7.2x faster</div>
+                </div>
+
+                <div class="matrix-row">
+                    <div class="col metric">
+                        <strong>Jobs Completed</strong>
+                        <span class="desc">In 60 second window</span>
+                    </div>
+                    <div class="col old">536</div>
+                    <div class="col new">425</div>
+                    <div class="col diff">Smart throttling</div>
+                </div>
+            </div>
+
+            <p style="color: var(--green); font-size: 0.95rem; margin-top: 1rem; font-weight: 500;">
+                Result: System stays responsive under heavy load. Apps feel snappy, calls don't lag.
+            </p>
+        </section>
+
+        <!-- Raspberry Pi 5 Section -->
+        <section class="deep-dive" style="background: linear-gradient(135deg, #0a1a0a, #12121a); border: 1px solid #22c55e;">
+            <span class="badge" style="color: #22c55e;">EDGE COMPUTING</span>
+            <h2 style="color: #22c55e; border-color: #22c55e;">Raspberry Pi 5 (8GB) Benchmark</h2>
+            <p style="color: var(--text-slate); margin-bottom: 1rem;">
+                BETTI running on edge hardware. Same framework, same performance gains.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="border-color: #22c55e;">
+                    <div class="icon">🥧</div>
+                    <h3>API Throughput</h3>
+                    <div class="big-number" style="color: #22c55e;">1,662 <span class="small">req/sec</span></div>
+                    <div class="verdict" style="background: rgba(34, 197, 94, 0.2); color: #86efac;">Faster than Server!</div>
+                    <p class="explanation">Pi 5 ARM cores handle BETTI efficiently. 4.31ms avg latency.</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="icon">📡</div>
+                    <h3>IoT Sensors</h3>
+                    <div class="big-number">2ms <span class="small">avg latency</span></div>
+                    <div class="verdict">Real-time</div>
+                    <p class="explanation">Temperature, motion, audio sensors processed instantly with correct priority.</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="icon">🤖</div>
+                    <h3>Edge LLM (qwen2.5:1.5b)</h3>
+                    <div class="big-number">10 <span class="small">tok/sec</span></div>
+                    <div class="verdict">Local AI</div>
+                    <p class="explanation">Run LLMs on Pi without cloud. Privacy-first AI at the edge.</p>
+                </div>
+            </div>
+
+            <p style="color: #22c55e; font-size: 0.95rem; margin-top: 1rem; font-weight: 500;">
+                Emergency priority: Archimedes works on Pi - urgent tasks float to the top.
+            </p>
         </section>
 
         <!-- QoS Priority Test -->

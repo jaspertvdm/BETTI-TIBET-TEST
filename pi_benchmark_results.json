@@ -1,0 +1,75 @@
+{
+  "hardware": "Raspberry Pi 5 8GB",
+  "timestamp": "2025-12-01 23:33:13",
+  "tests": {
+    "throughput": {
+      "duration_sec": 10.002778857000521,
+      "total_requests": 16630,
+      "successful": 16630,
+      "errors": 0,
+      "requests_per_sec": 1662.5380044627666,
+      "avg_latency_ms": 4.305397569390475,
+      "p95_latency_ms": 6.601829998544417,
+      "p99_latency_ms": 8.023866001167335
+    },
+    "iot_sensors": {
+      "temperature": {
+        "avg_latency_ms": 2.028418198460713,
+        "urgency": 3,
+        "data_kb": 0.1,
+        "priority": 1
+      },
+      "motion": {
+        "avg_latency_ms": 2.210296101111453,
+        "urgency": 8,
+        "data_kb": 0.5,
+        "priority": 1
+      },
+      "camera": {
+        "avg_latency_ms": 2.5397208490176126,
+        "urgency": 5,
+        "data_kb": 50,
+        "priority": 10
+      },
+      "audio": {
+        "avg_latency_ms": 2.452965400152607,
+        "urgency": 6,
+        "data_kb": 10,
+        "priority": 8
+      },
+      "heartbeat": {
+        "avg_latency_ms": 2.6064763995236717,
+        "urgency": 2,
+        "data_kb": 0.01,
+        "priority": 1
+      }
+    },
+    "archimedes": {
+      "emergency_latency_ms": 2.562906011007726,
+      "emergency_priority": 1,
+      "background_avg_latency_ms": 7.155051668329786,
+      "background_priority": 10,
+      "emergency_served_first": true
+    },
+    "llm": {
+      "simple": {
+        "latency_ms": 1495.6898880045628,
+        "tokens": 9,
+        "tokens_per_sec": 6.017290129578347,
+        "success": true
+      },
+      "medium": {
+        "latency_ms": 5382.248634006828,
+        "tokens": 53,
+        "tokens_per_sec": 9.847185368793344,
+        "success": true
+      },
+      "complex": {
+        "latency_ms": 90416.46225999284,
+        "tokens": 803,
+        "tokens_per_sec": 8.881126068513616,
+        "success": true
+      }
+    }
+  }
+}
