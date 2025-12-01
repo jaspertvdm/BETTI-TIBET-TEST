@@ -1,0 +1,134 @@
+version: '3.8'
+
+# ═══════════════════════════════════════════════════════════════════════════
+# BETTI/DABS 14-Wetten Demo Stack
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Starts the complete monitoring stack for the 14 physics laws:
+#   - Prometheus: Metrics collection
+#   - Grafana: Visualization dashboard
+#   - BETTI API: Resource planner (proxied from betti.humotica.com)
+#
+# Usage:
+#   docker-compose up -d
+#   Open http://localhost:3000 (Grafana, admin/admin)
+#   Import dashboard from grafana/dabs_14_wetten_dashboard.json
+#
+# ═══════════════════════════════════════════════════════════════════════════
+
+services:
+  # ─────────────────────────────────────────────────────────────────────────
+  # Prometheus - Metrics Collection
+  # ─────────────────────────────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: betti-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=7d'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - betti-network
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Grafana - Visualization
+  # ─────────────────────────────────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:10.1.0
+    container_name: betti-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-clock-panel
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dabs_14_wetten_dashboard.json:/var/lib/grafana/dashboards/dabs_14_wetten.json:ro
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - betti-network
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # BETTI Test Runner - Runs 14-wetten tests and exposes metrics
+  # ─────────────────────────────────────────────────────────────────────────
+  test-runner:
+    image: python:3.11-slim
+    container_name: betti-test-runner
+    working_dir: /app
+    volumes:
+      - ./tests:/app:ro
+    command: >
+      sh -c "pip install -q prometheus_client &&
+             python3 -c '
+import http.server
+import json
+import time
+from prometheus_client import Counter, Gauge, Histogram, generate_latest, CONTENT_TYPE_LATEST
+
+# Metrics
+newton_blocks = Counter(\"betti_newton_blocks_total\", \"Newton law blocks\")
+newton_allowed = Counter(\"betti_newton_allowed_total\", \"Newton law allowed\")
+thermodynamics_blocks = Counter(\"betti_thermodynamics_blocks_total\", \"Thermodynamics blocks\")
+heisenberg_blocks = Counter(\"betti_heisenberg_blocks_total\", \"Heisenberg blocks\")
+kepler_delays = Counter(\"betti_kepler_delays_total\", \"Kepler delays\")
+archimedes_queue = Counter(\"betti_archimedes_queue_total\", \"Archimedes queue ops\")
+einstein_boosts = Counter(\"betti_einstein_boosts_total\", \"Einstein boosts\")
+planck_memory = Counter(\"betti_planck_memory_mb_total\", \"Planck memory allocated\")
+conservation_tokens = Counter(\"betti_conservation_tokens_total\", \"Conservation tokens\")
+einstein_avg = Gauge(\"betti_einstein_boost_avg\", \"Average boost\")
+request_latency = Histogram(\"betti_request_latency_seconds\", \"Request latency\",
+                            buckets=[0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0])
+tasks = Counter(\"betti_tasks_total\", \"Tasks by type\", [\"task_type\"])
+
+# Simulate some data
+for _ in range(100):
+    newton_allowed.inc()
+for _ in range(5):
+    newton_blocks.inc()
+einstein_avg.set(1.2)
+tasks.labels(task_type=\"video_call\").inc(50)
+tasks.labels(task_type=\"voice_call\").inc(30)
+tasks.labels(task_type=\"background\").inc(20)
+
+class Handler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == \"/metrics\":
+            self.send_response(200)
+            self.send_header(\"Content-Type\", CONTENT_TYPE_LATEST)
+            self.end_headers()
+            self.wfile.write(generate_latest())
+        else:
+            self.send_response(200)
+            self.send_header(\"Content-Type\", \"text/html\")
+            self.end_headers()
+            self.wfile.write(b\"<h1>BETTI Metrics</h1><a href=\\\"/metrics\\\">/metrics</a>\")
+    def log_message(self, format, *args): pass
+
+print(\"Metrics server on :8000\")
+http.server.HTTPServer((\"\", 8000), Handler).serve_forever()
+'"
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - betti-network
+
+networks:
+  betti-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:

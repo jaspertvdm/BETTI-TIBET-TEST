@@ -1,0 +1,11 @@
+# Prometheus configuration for BETTI 14-Wetten monitoring
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+  # Scrape the test-runner metrics endpoint
+  - job_name: 'betti-metrics'
+    static_configs:
+      - targets: ['test-runner:8000']
+    metrics_path: /metrics
