@@ -31,6 +31,11 @@ from datetime import datetime
 API_BASE = "https://betti.humotica.com"
 # API_BASE = "http://localhost:8010"  # For local testing
 
+# Newton Blocking Threshold (client-side pre-check)
+# Requests with trust_level < 0.3 are blocked before reaching the backend
+# Newton is a GATEKEEPER law: determines IF task runs, not HOW MUCH boost it gets
+NEWTON_TRUST_THRESHOLD = 0.3
+
 # Colors for terminal output
 class Colors:
     GREEN = '\033[92m'
@@ -89,7 +94,33 @@ def plan_resources(task_type: str,
                    participants: List[str] = None,
                    data_size_mb: float = 1.0,
                    trust_level: float = 0.5) -> dict:
-    """Call the DABS /planner/plan endpoint."""
+    """
+    Call the DABS /planner/plan endpoint.
+
+    Includes client-side Newton blocking pre-check:
+    - Newton is a GATEKEEPER law (blocking, not scaling)
+    - If trust_level < 0.3, block immediately before calling backend
+    - This matches DabsClient.kt behavior on Android
+    """
+    # ═══════════════════════════════════════════════════════════════════
+    # NEWTON BLOCKING LAW (Client-side Pre-Check)
+    # ═══════════════════════════════════════════════════════════════════
+    # Newton is a GATEKEEPER: if trust < 0.3, block immediately.
+    # This check happens BEFORE any backend call or CPU boost calculation.
+    # Newton determines IF the task runs, not HOW MUCH boost it gets.
+    # ═══════════════════════════════════════════════════════════════════
+    if trust_level < NEWTON_TRUST_THRESHOLD:
+        return {
+            "status": "blocked",
+            "blocking_law": "Newton",
+            "message": f"Trust level too low: {trust_level:.2f} < {NEWTON_TRUST_THRESHOLD} threshold",
+            "laws_applied": ["Newton"],
+            "cpu_boost": 0.0,
+            "memory_mb": 0,
+            "timeout_seconds": 0,
+            "queue_position": 0
+        }
+
     payload = {
         "task_type": task_type,
         "urgency": urgency,

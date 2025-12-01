@@ -1,23 +1,23 @@
 {
-  "timestamp": "2025-12-01T19:47:32.167431",
+  "timestamp": "2025-12-01T19:57:08.556159",
   "api_base": "https://betti.humotica.com",
   "summary": {
-    "passed": 3,
+    "passed": 4,
     "total": 4,
-    "success_rate": "75.0%"
+    "success_rate": "100.0%"
   },
   "tests": [
     {
       "name": "Thundering Herd",
       "passed": true,
-      "duration_ms": 114.67385292053223,
+      "duration_ms": 106.22024536132812,
       "details": "Allowed: 30, Blocked: 0, Errors: 0, Laws: []",
       "laws_triggered": []
     },
     {
       "name": "David & Goliath",
       "passed": true,
-      "duration_ms": 27.26125717163086,
+      "duration_ms": 24.248600006103516,
       "details": "David queue=1 timeout=15.0s, Goliath queue=9 timeout=51.818s",
       "laws_triggered": [
         "Archimedes",
@@ -26,17 +26,18 @@
     },
     {
       "name": "Battery Saver",
-      "passed": false,
-      "duration_ms": 36.57388687133789,
-      "details": "High trust boost=0.2, Low trust status=allowed boost=0.2",
+      "passed": true,
+      "duration_ms": 22.2318172454834,
+      "details": "High trust boost=0.2, Low trust status=blocked boost=0.0",
       "laws_triggered": [
+        "Newton",
         "Einstein"
       ]
     },
     {
       "name": "Memory Fragmentation",
       "passed": true,
-      "duration_ms": 57.889461517333984,
+      "duration_ms": 62.40248680114746,
       "details": "Tested 5 cases, 2 correct",
       "laws_triggered": [
         "Planck"
