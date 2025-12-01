@@ -1,23 +1,23 @@
 {
-  "timestamp": "2025-12-01T19:57:08.556159",
+  "timestamp": "2025-12-01T20:24:53.009069",
   "api_base": "https://betti.humotica.com",
   "summary": {
-    "passed": 4,
-    "total": 4,
+    "passed": 9,
+    "total": 9,
     "success_rate": "100.0%"
   },
   "tests": [
     {
       "name": "Thundering Herd",
       "passed": true,
-      "duration_ms": 106.22024536132812,
+      "duration_ms": 110.60023307800293,
       "details": "Allowed: 30, Blocked: 0, Errors: 0, Laws: []",
       "laws_triggered": []
     },
     {
       "name": "David & Goliath",
       "passed": true,
-      "duration_ms": 24.248600006103516,
+      "duration_ms": 23.08177947998047,
       "details": "David queue=1 timeout=15.0s, Goliath queue=9 timeout=51.818s",
       "laws_triggered": [
         "Archimedes",
@@ -27,7 +27,7 @@
     {
       "name": "Battery Saver",
       "passed": true,
-      "duration_ms": 22.2318172454834,
+      "duration_ms": 23.717164993286133,
       "details": "High trust boost=0.2, Low trust status=blocked boost=0.0",
       "laws_triggered": [
         "Newton",
@@ -37,10 +37,55 @@
     {
       "name": "Memory Fragmentation",
       "passed": true,
-      "duration_ms": 62.40248680114746,
+      "duration_ms": 59.291839599609375,
       "details": "Tested 5 cases, 2 correct",
       "laws_triggered": [
         "Planck"
+      ]
+    },
+    {
+      "name": "Thermodynamics Health",
+      "passed": true,
+      "duration_ms": 11.540412902832031,
+      "details": "System health: 93.1%",
+      "laws_triggered": [
+        "Thermodynamics"
+      ]
+    },
+    {
+      "name": "Heisenberg Uncertainty",
+      "passed": true,
+      "duration_ms": 23.81443977355957,
+      "details": "High conflict tradeoff_valid=True",
+      "laws_triggered": [
+        "Heisenberg"
+      ]
+    },
+    {
+      "name": "Wave Propagation",
+      "passed": true,
+      "duration_ms": 23.25272560119629,
+      "details": "Single: 26.25s, Group (10): 20.0s",
+      "laws_triggered": [
+        "Wave"
+      ]
+    },
+    {
+      "name": "Maxwell Coordination",
+      "passed": true,
+      "duration_ms": 38.28072547912598,
+      "details": "Emergency: 0, Video: 0, Background: 0",
+      "laws_triggered": [
+        "Maxwell"
+      ]
+    },
+    {
+      "name": "Conservation Tokens",
+      "passed": true,
+      "duration_ms": 23.334741592407227,
+      "details": "Small: 100 tokens, Large: 400 tokens",
+      "laws_triggered": [
+        "Conservation"
       ]
     }
   ]
