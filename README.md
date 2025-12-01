@@ -136,4 +136,13 @@ python tests/new-protocols/test_canbus.py
 
 ## Licentie
 
-MIT - Vrij te gebruiken, citeer appropriaat.
+**JOSL (Jasper Open Standard License) v1.0**
+
+> "Powered by JIS (JTel Identity Standard), authored by Jasper van de Meent."
+
+Zie [LICENSE.md](LICENSE.md) voor volledige tekst.
+
+- ✔ Vrij te gebruiken, implementeren, integreren
+- ✔ Open source én commercieel gebruik toegestaan
+- ✗ Niet hernoemen of claimen als eigen werk
+- ✗ Niet fragmenteren in incompatibele varianten
