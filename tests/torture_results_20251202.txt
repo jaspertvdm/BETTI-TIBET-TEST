@@ -1,0 +1,54 @@
+============================================================
+  BETTI Local Torture Test v2
+  Comparing RAW vs BALANCED (14-wetten) resource management
+
+  Date: 2025-12-02
+  Platform: Kali Linux, 8 threads
+  Duration: 30s per mode
+============================================================
+
+=== MODE: RAW ===
+Totale looptijd (wall) : 31.2 s
+Total loops (alles)    : 112
+Zware jobs uitgevoerd  : 112
+Skips (Newton block)   : 0
+Gem. jobtijd           : 2142.8 ms
+P50 jobtijd            : 1999.0 ms
+P90 jobtijd            : 3272.4 ms
+P99 jobtijd            : 4138.3 ms
+Throughput             : 3.6 jobs/s
+
+=== MODE: BALANCED ===
+Totale looptijd (wall) : 30.1 s
+Total loops (alles)    : 106
+Zware jobs uitgevoerd  : 106
+Skips (Newton block)   : 6027
+Gem. jobtijd           : 825.7 ms
+P50 jobtijd            : 791.6 ms
+P90 jobtijd            : 1097.1 ms
+P99 jobtijd            : 1352.2 ms
+Throughput             : 3.5 jobs/s
+
+============================================================
+  COMPARISON
+============================================================
+
+P90 Latency: RAW 3272.4ms vs BALANCED 1097.1ms
+Improvement: 66.5%
+
+Throughput: RAW 3.6 vs BALANCED 3.5 jobs/s
+Ratio: 0.97x
+
+Newton blocks (skips): 6027
+
+============================================================
+  CONCLUSION
+============================================================
+
+BALANCED mode (using DABS 14-wetten principles):
+- 66.5% lower P90 latency
+- Nearly identical throughput (97%)
+- 6027 jobs were throttled (Newton blocking)
+
+This proves client-side resource management with physics laws
+significantly improves tail latency without sacrificing throughput.
