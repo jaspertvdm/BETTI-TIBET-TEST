@@ -908,6 +908,62 @@
             </div>
         </section>
 
+        <!-- Core Balancer Module -->
+        <section style="background: var(--bg-card); border-radius: 16px; padding: 2rem; margin: 2rem 0; border: 1px solid var(--accent);">
+            <span class="badge" style="color: var(--accent);">DEVELOPER TOOLS</span>
+            <h2 style="color: var(--accent); border-color: var(--accent);">Core Balancer Module</h2>
+            <p style="color: var(--text-dim); margin-bottom: 1rem;">
+                Reusable Python module for any application. No cgroups, no root, pure physics.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem;">Server-Side</h3>
+                    <pre style="background: #0a0a0f; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;"><code>from betti_core_balancer import balanced
+
+@balanced(weight="heavy")
+async def process_video(data):
+    # Auto-balanced by Archimedes
+    return transcode(data)</code></pre>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem;">Client-Side SDK</h3>
+                    <pre style="background: #0a0a0f; padding: 1rem; border-radius: 8px; font-size: 0.85rem; overflow-x: auto;"><code>from tibet_betti_client import balanced
+
+@balanced(weight="heavy")
+async def render_scene():
+    # Keeps UI responsive
+    return await gpu_render()</code></pre>
+                </div>
+            </div>
+
+            <div style="background: #0a0a0f; border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Test Results</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--green);">544</div>
+                        <div style="font-size: 0.85rem; color: var(--text-dim);">Skips (10 tasks)</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--green);">3,953</div>
+                        <div style="font-size: 0.85rem; color: var(--text-dim);">Skips (50 tasks)</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--green);">98.8%</div>
+                        <div style="font-size: 0.85rem; color: --text-dim);">Skip rate = responsive</div>
+                    </div>
+                </div>
+                <p style="color: var(--text-slate); font-size: 0.9rem; margin-top: 1rem; text-align: center;">
+                    Higher skip rate = better responsiveness. Tasks "wait" while system stays snappy.
+                </p>
+            </div>
+
+            <p style="color: var(--green); font-size: 0.95rem; margin-top: 1rem; font-weight: 500;">
+                <strong>No cgroups. No nice/ionice. No SLURM. Just 3 physics laws.</strong>
+            </p>
+        </section>
+
         <!-- Key Findings -->
         <section class="conclusion">
             <h2>Key Findings</h2>
